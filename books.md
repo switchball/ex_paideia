@@ -27,7 +27,7 @@
 | 21   | 开始写吧！                     | 劳丽·拉姆森/2015-11/中国人民大学出版社                   |    王敏/2018.5.2/南京      |
 | 22   | 希腊史研究入门                 | 黄洋 晏绍祥/2009-08-01/北京大学出版社                    |     戴玮烨/2018.5.2/南京   |
 | 23   | Compendieum of Watercolour Techniques|Robin Berry/ Serch Press| 陈之涵中转|
-| 24 | Paint With the Watercolour Masters  | Stephenson, Jonathan/2010/05/04/THAMES & HUDSON LTD.           |   |
+| 24 | Paint With the Watercolour Masters  | Stephenson, Jonathan/2010/05/04/THAMES & HUDSON LTD.           |陈之涵中转   |
 | 25 | 十批判书                              | 郭沫若/2008-02-01/中国华侨出版社                                 |   |
 | 26 | 赖声川的创意学                        | 赖声川/2011-8/广西师范大学出版社                                 |   |
 | 27 | 素描的诀窍                            | 多德森/2014-05-01/上海交通大学出版社                             |   |
@@ -50,12 +50,12 @@
 | 44 | 爱的艺术                              | 弗洛姆/2008/04/01/上海译文出版社                                 |   |
 | 45 | 中國大學的人文教育                    | 甘陽/ 陳來/ 蘇力/2006/06/01/生活·读书·新知三联书店               |   |
 | 46 | 20世纪中国女作家的创作道路            | 任玲玲/2004-12/蜀蓉棋艺出版社                                    |   |
-| 47 | 在北大课堂读诗                        | 洪子诚 主编/2014-11/北京大学出版社                               |   |
+| 47 | 在北大课堂读诗                        | 洪子诚 主编/2014-11/北京大学出版社                               | 杨沁龙  |
 | 48 | 游戏架构设计与策划基础                | 黄石，李志远，陈洪　编著/2010-01-01/清华大学出版社               |   |
 | 49 | 建筑形式的逻辑概念                    | (德)托马斯﹒史密特 (著) 肖毅强(译)/2003-01-01/中国建筑工业出版社 |   |
 | 50 | 外部空间设计                          | 芦原义信 (著) 尹培桐(译)/1985-3/中国建筑工业出版社               |   |
 | 51 | 上帝掷骰子吗？                        | 曹天元/2013-9-1/北京联合出版公司                                 |   |
 | 52 | 布局天下                              | 饶胜文/2002-1-1/解放军出版社                                     |   |
 | 53 | 中国南洋交通史                        | 冯承钧/2011/商务印书馆 (北京)                                    |   |
-| 54 | Aim High Keep Moving                  | Index Book/2010-07-10/Index Book                                 |   |
-| 55 | All Men Are Brothers (Designer's Ed.) | He, Jianping/2007-11-07/PAGE ONE PUBLISHING PTE LTD              |   |
+| 54 | Aim High Keep Moving                  | Index Book/2010-07-10/Index Book                                 | 蓝小毛？ |
+| 55 | All Men Are Brothers (Designer's Ed.) | He, Jianping/2007-11-07/PAGE ONE PUBLISHING PTE LTD              |李文睿 ？ |
