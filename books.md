@@ -108,7 +108,7 @@
 | 101 | Life and Death in Shanghai | Nien Cheng鄭念/2010/12/14/GROVE/ATLANTIC, INC. |卢坚丽  |
 
 
-[^_^]: It says, it is not the end ... 
+[^_^]: It says it is not the end ... 
 
 
 [>_<]:
