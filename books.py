@@ -8,7 +8,6 @@ File books.py created on 19:17 2018/5/4
 @version: 1.0
 """
 
-import git
 import spider  # get PSpider from https://github.com/xianhu/PSpider
 import logging
 import requests
@@ -147,6 +146,7 @@ def first():
 
 
 def second():
+    import git
     g = git.cmd.Git(path)
     print('Pulling from repo ...')
     print(g.pull())
@@ -215,10 +215,6 @@ if __name__ == "__main__":
     print(f'Repo has {len(a)} entries: {a}')
     file_content = third(m, a, b)
     print('\n'.join(file_content))
-
-    g = git.cmd.Git(path)
-    print('Pushing to repo ...')
-    print(g.push())
     exit()
 
 # You don't know. I don't know.
