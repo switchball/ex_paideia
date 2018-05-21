@@ -1,0 +1,10 @@
+# Temp Files
+*.txt
+*.png
+*.pyc
+*.pyo
+
+# Spider Framework
+spider/
+
+# What is the παίξειν?
