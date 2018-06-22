@@ -3,6 +3,7 @@
 *.png
 *.pyc
 *.pyo
+.ssh/
 
 # Spider Framework
 spider/

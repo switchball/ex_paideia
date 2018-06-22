@@ -216,9 +216,14 @@ if __name__ == "__main__":
     file_content = third(m, a, b)
     print('\n'.join(file_content))
 
-    g = git.cmd.Git(path)
+    repo = git.Repo(path)
+    index = repo.index
+    index.add(['books.md'])
+    repo.git.commit('-m', 'auto update')
+
     print('Pushing to repo ...')
-    print(g.push())
+    origin = repo.remote('origin')
+    origin.push()
     exit()
 
 # You don't know. I don't know.
