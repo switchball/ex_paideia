@@ -65,13 +65,13 @@ class MyParser(spider.Parser):
                 bid = book_li.attrib['id']
                 link = book_li.xpath('a/@href')[0]
                 url_list.append((prefix_url + link, {"type": 'detail', 'id': str(bid)}, priority))
-            print(f'Finding {len(book_lis)} books')
+            print(f'<br>Finding {len(book_lis)} books<br>')
 
             next_page = root.xpath('//a[@id="pageNext"]/@href')
             next_page = prefix_url + next_page[0] if next_page else None
             if next_page is not None:
                 url_list.append((next_page, keys, priority+1))
-                print('Finding page ' + next_page)
+                print('<br>Finding page ' + next_page + '<br>')
 
         elif keys['type'] == 'detail':
             book_title = root.xpath('//div[@id="bookDetail"]//div[@id="attr"]/h2')[0].text
@@ -112,7 +112,7 @@ def go_spider():
     # initial fetcher / parser / saver
     fetcher = MyFetcher(max_repeat=3, sleep_time=5)
     parser = MyParser(max_deep=2)
-    saver = MySaver(save_pipe=open("book_info_list.txt", "w", encoding='utf8'))
+    saver = MySaver(save_pipe=open(os.path.join(path, 'book_info_list.txt'), "w", encoding='utf8'))
 
     # initial web_spider
     web_spider = spider.WebSpider(fetcher, parser, saver, proxieser=None, url_filter=None, monitor_sleep_time=5)
@@ -140,7 +140,7 @@ def is_workspace_clean():
 
 def first():
     mp = {}
-    with open('book_info_list.txt', 'r', encoding='utf8') as f:
+    with open(os.path.join(path, 'book_info_list.txt'), 'r', encoding='utf8') as f:
         for line in f:
             bid, title, author = line[:-1].split('|')
             mp[bid] = (title, author)
@@ -194,7 +194,7 @@ def third(mp, info, file_content):
     lines = pre_table + dur_table + post_table
     lines.append('    ' + ','.join(f'{k+1}:{v}' for k,v in enumerate(info)))
 
-    with open(path + '\\books.md', 'w', encoding='utf8') as f:
+    with open(os.path.join(path, 'books.md'), 'w', encoding='utf8') as f:
         f.writelines(line + '\n' for line in lines)
 
     return lines
@@ -211,8 +211,6 @@ def read_repo_dir():
 
 if __name__ == "__main__":
     path = read_repo_dir()
-    second()
-    exit(-1)
 
     if not is_workspace_clean():
         print('You should make sure git workspace clean before you go ahead!')
@@ -241,6 +239,7 @@ if __name__ == "__main__":
     print('Pushing to repo ...')
     origin = repo.remote('origin')
     origin.push()
+    print('Done. You can close this window now.')
     exit()
 
 # You don't know. I don't know.
