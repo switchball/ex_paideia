@@ -8,6 +8,7 @@ File books.py created on 19:17 2018/5/4
 @version: 1.0
 """
 
+import os
 import git
 import spider  # get PSpider from https://github.com/xianhu/PSpider
 import logging
@@ -157,7 +158,7 @@ def second():
     post_table = []
     c = pre_table
     print('Reading file books.md')
-    with open(path + '\\books.md', 'r', encoding='utf8') as f:
+    with open(os.path.join(path, 'books.md'), 'r', encoding='utf8') as f:
 
         for line in f:
             _line = line[:-1].strip()  # type: str
