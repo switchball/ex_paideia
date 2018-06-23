@@ -148,6 +148,7 @@ def first():
 
 def second():
     g = git.cmd.Git(path)
+    # repo = Repo.init(path) repo.remotes.origin.pull()
     print('Pulling from repo ...')
     print(g.pull())
 
@@ -198,8 +199,18 @@ def third(mp, info, file_content):
 
     return lines
 
+def read_repo_dir():
+    d = "."
+    try:
+        with open('repo_dir.txt', 'r') as f:
+            d = f.read()
+    except FileNotFoundError as e:
+        d = '.'
+
+    return d.strip()
+
 if __name__ == "__main__":
-    path = 'F:\\ex_paideia\\ex_paideia'
+    path = read_repo_dir()
 
     if not is_workspace_clean():
         print('You should make sure git workspace clean before you go ahead!')
