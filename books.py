@@ -230,8 +230,7 @@ if __name__ == "__main__":
     repo = git.Repo(path)
     index = repo.index
     index.add(['books.md'])
-    d = index.diff()
-    if len(d) > 0:
+    if not is_workspace_clean():
         repo.git.commit('-m', 'auto update')
     else:
         print('clean, nothing to commit')
