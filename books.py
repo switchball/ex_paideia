@@ -55,7 +55,7 @@ class BookExportingThread(threading.Thread):
 
         self.message = 'Pushing to repo'
         file_content = self.third(m, a, b)
-        print('\n'.join(file_content))
+        # print('\n'.join(file_content))
 
         g = git.cmd.Git(self.path)
         print('Pushing to repo ...')
