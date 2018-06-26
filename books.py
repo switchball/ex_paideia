@@ -122,7 +122,7 @@ class BookExportingThread(threading.Thread):
 
         instance = None
         def set_instance(self, i):
-            instance = i
+            self.instance = i
 
         """
         parser module, only rewrite htm_parse()
@@ -142,8 +142,8 @@ class BookExportingThread(threading.Thread):
                     link = book_li.xpath('a/@href')[0]
                     url_list.append((prefix_url + link, {"type": 'detail', 'id': str(bid)}, priority))
                 print(f'Finding {len(book_lis)} books')
-                instance.progress += len(book_lis)
-                instance.message = f"Read {len(book_lis)} books."
+                self.instance.progress += len(book_lis)
+                self.instance.message = f"Read {len(book_lis)} books."
 
                 next_page = root.xpath('//a[@id="pageNext"]/@href')
                 next_page = prefix_url + next_page[0] if next_page else None
