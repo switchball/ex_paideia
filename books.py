@@ -68,9 +68,9 @@ class BookExportingThread(threading.Thread):
         test spider
         """
         # initial fetcher / parser / saver
-        fetcher = MyFetcher(max_repeat=3, sleep_time=5)
-        parser = MyParser(max_deep=2)
-        saver = MySaver(save_pipe=open("book_info_list.txt", "w", encoding='utf8'))
+        fetcher = BookExportingThread.MyFetcher(max_repeat=3, sleep_time=5)
+        parser = BookExportingThread.MyParser(max_deep=2)
+        saver = BookExportingThread.MySaver(save_pipe=open("book_info_list.txt", "w", encoding='utf8'))
 
         parser.instance = self
 
