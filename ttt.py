@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# Three Thousand Thoughts
 import random
 import threading
 import time
