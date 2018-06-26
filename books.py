@@ -145,7 +145,7 @@ class BookExportingThread(threading.Thread):
                 if self.total_num == 0:
                     num = root.xpath("//ul[@id='categoryList']//a[@class='on']/text()")[0]
                     self.total_num = int(num.split(' ')[1])
-                    print('Total num: ' + self.total_num)
+                    print('Total num: ' + str(self.total_num))
 
                 book_lis = root.xpath('//ul[@id="booksList"]/li')
                 for book_li in book_lis:
@@ -178,6 +178,7 @@ class BookExportingThread(threading.Thread):
                 self.crt_num += 1
                 self.instance.progress = 10 + int(0.8 * self.crt_num / self.total_num) if self.total_num > 0 else 10
                 self.instance.message = f"Fetch {self.crt_num} of {self.total_num} books..."
+                print(self.instance.message)
 
             return 1, url_list, save_list
 
