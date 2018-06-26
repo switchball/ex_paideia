@@ -30,7 +30,7 @@ class BookExportingThread(threading.Thread):
     def run(self):
         # Your exporting stuff goes here ...
         self.path = self.read_repo_dir()
-        self.progress = 1
+        self.progress = 5
         self.message = 'Read Repo Dir.'
 
         if not self.is_workspace_clean():
@@ -40,19 +40,22 @@ class BookExportingThread(threading.Thread):
 
         logging.basicConfig(level=logging.INFO, format="%(asctime)s\t%(levelname)s\t%(message)s")
         print('Crawling ...')
-        self.progress = 0
+        self.progress = 10
         self.message = 'Crawling ...'
 
         self.go_spider()
 
+        self.progress = 90
         self.message = 'Reading book list'
         m = self.first()
         print(f'Get {len(m)} entries: <m>')
 
+        self.progress = 95
         self.message = 'Pulling from repo'
         a, b = self.second()
         print(f'Repo has {len(a)} entries: <a>')
 
+        self.progress = 98
         self.message = 'Pushing to repo'
         file_content = self.third(m, a, b)
         # print('\n'.join(file_content))
@@ -61,6 +64,7 @@ class BookExportingThread(threading.Thread):
         print('Pushing to repo ...')
         print(g.push())
 
+        self.progress = 100
         self.message = 'Done. You can close the window now.'
 
     def go_spider(self):
@@ -120,6 +124,8 @@ class BookExportingThread(threading.Thread):
 
     class MyParser(spider.Parser):
 
+        total_num = 0
+        crt_num = 0
         instance = None
         def set_instance(self, i):
             self.instance = i
@@ -136,14 +142,16 @@ class BookExportingThread(threading.Thread):
             save_list = []
 
             if keys['type'] is None:
+                if self.total_num == 0:
+                    num = root.xpath("//ul[@id='categoryList']//a[@class='on']/text()")[0]
+                    self.total_num = num.split(' ')[1]
+
                 book_lis = root.xpath('//ul[@id="booksList"]/li')
                 for book_li in book_lis:
                     bid = book_li.attrib['id']
                     link = book_li.xpath('a/@href')[0]
                     url_list.append((prefix_url + link, {"type": 'detail', 'id': str(bid)}, priority))
                 print(f'Finding {len(book_lis)} books')
-                self.instance.progress += len(book_lis)
-                self.instance.message = f"Read {self.instance.progress} books."
 
                 next_page = root.xpath('//a[@id="pageNext"]/@href')
                 next_page = prefix_url + next_page[0] if next_page else None
@@ -165,6 +173,10 @@ class BookExportingThread(threading.Thread):
                     elif li_text.startswith("出版时间:"):
                         book_time = li_text[5:]
                 save_list.append((keys['id'], book_title, "/".join([book_author, book_time, book_press])))
+                # log
+                self.crt_num += 1
+                self.instance.progress = 10 + int(0.8 * self.crt_num / self.total_num) if self.total_num > 0 else 10
+                self.instance.message = f"Fetch {self.crt_num} of {self.total_num} books..."
 
             return 1, url_list, save_list
 
