@@ -50,10 +50,20 @@ class BookExportingThread(threading.Thread):
         m = self.first()
         print(f'Get {len(m)} entries: <m>')
 
-        self.progress = 95
+        self.progress = 92
         self.message = 'Pulling from repo'
         a, b = self.second()
         print(f'Repo has {len(a)} entries: <a>')
+
+        self.progress = 95
+        self.message = 'Ready for commit'
+        repo = git.Repo(self.path)
+        index = repo.index
+        index.add(['books.md'])
+        if not is_workspace_clean():
+            repo.git.commit('-m', 'auto update')
+        else:
+            print('clean, nothing to commit')
 
         self.progress = 98
         self.message = 'Pushing to repo'
@@ -176,7 +186,7 @@ class BookExportingThread(threading.Thread):
                 save_list.append((keys['id'], book_title, "/".join([book_author, book_time, book_press])))
                 # log
                 self.crt_num += 1
-                self.instance.progress = 10 + int(0.8 * self.crt_num / self.total_num) if self.total_num > 0 else 10
+                self.instance.progress = 10 + int(80 * self.crt_num / self.total_num) if self.total_num > 0 else 10
                 self.instance.message = f"Fetch {self.crt_num} of {self.total_num} books..."
                 print(self.instance.message)
 
