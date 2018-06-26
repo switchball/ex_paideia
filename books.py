@@ -47,11 +47,11 @@ class BookExportingThread(threading.Thread):
 
         self.message = 'Reading book list'
         m = self.first()
-        print(f'Get {len(m)} entries: {m}')
+        print(f'Get {len(m)} entries: <m>')
 
         self.message = 'Pulling from repo'
         a, b = self.second()
-        print(f'Repo has {len(a)} entries: {a}')
+        print(f'Repo has {len(a)} entries: <a>')
 
         self.message = 'Pushing to repo'
         file_content = self.third(m, a, b)
