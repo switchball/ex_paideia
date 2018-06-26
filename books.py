@@ -65,7 +65,7 @@ class BookExportingThread(threading.Thread):
         repo = git.Repo(self.path)
         index = repo.index
         index.add(['books.md'])
-        if not is_workspace_clean():
+        if not self.is_workspace_clean():
             repo.git.commit('-m', 'auto update')
         else:
             print('clean, nothing to commit')
