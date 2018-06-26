@@ -144,7 +144,8 @@ class BookExportingThread(threading.Thread):
             if keys['type'] is None:
                 if self.total_num == 0:
                     num = root.xpath("//ul[@id='categoryList']//a[@class='on']/text()")[0]
-                    self.total_num = num.split(' ')[1]
+                    self.total_num = int(num.split(' ')[1])
+                    print('Total num: ' + self.total_num)
 
                 book_lis = root.xpath('//ul[@id="booksList"]/li')
                 for book_li in book_lis:
