@@ -8,6 +8,10 @@
 # Spider Framework
 spider/
 
+# Flask Framework
+static/
+templates/
+
 # Config
 repo_dir.txt
 

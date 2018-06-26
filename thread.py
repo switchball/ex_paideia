@@ -1,8 +1,13 @@
 import random
 import threading
 import time
+import json
 
 from flask import Flask
+from flask import Response
+from flask import url_for
+from flask import render_template
+
 from books import BookExportingThread
 
 
@@ -11,23 +16,37 @@ exporting_threads = {}
 app = Flask(__name__)
 app.debug = True
 
-
 @app.route('/')
 def index():
+    # template
+
+    return render_template('index.html')
+    #return 'task id: #%s' % thread_id
+
+
+@app.route('/run_task', methods=['POST'])
+def run_task():
     global exporting_threads
 
     thread_id = random.randint(0, 10000)
     exporting_threads[thread_id] = BookExportingThread()
     exporting_threads[thread_id].start()
 
-    return 'task id: #%s' % thread_id
+    url_for('progress', thread_id=thread_id)
+
+    return '%s' % thread_id
 
 
 @app.route('/progress/<int:thread_id>')
 def progress(thread_id):
     global exporting_threads
 
-    return str(exporting_threads[thread_id].progress) + ":" + exporting_threads[thread_id].message
+    ret = {
+        'progress': exporting_threads[thread_id].progress,
+        'message': exporting_threads[thread_id].message
+    }
+
+    return Response(json.dumps(ret), mimetype='application/json')
 
 
 if __name__ == '__main__':
