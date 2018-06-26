@@ -143,7 +143,7 @@ class BookExportingThread(threading.Thread):
                     url_list.append((prefix_url + link, {"type": 'detail', 'id': str(bid)}, priority))
                 print(f'Finding {len(book_lis)} books')
                 self.instance.progress += len(book_lis)
-                self.instance.message = f"Read {len(book_lis)} books."
+                self.instance.message = f"Read {self.instance.progress} books."
 
                 next_page = root.xpath('//a[@id="pageNext"]/@href')
                 next_page = prefix_url + next_page[0] if next_page else None
