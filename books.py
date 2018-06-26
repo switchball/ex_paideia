@@ -56,6 +56,11 @@ class BookExportingThread(threading.Thread):
         print(f'Repo has {len(a)} entries: <a>')
 
         self.progress = 95
+        self.message = 'Writing files'
+        file_content = self.third(m, a, b)
+        # print('\n'.join(file_content))
+
+        self.progress = 96
         self.message = 'Ready for commit'
         repo = git.Repo(self.path)
         index = repo.index
@@ -66,10 +71,6 @@ class BookExportingThread(threading.Thread):
             print('clean, nothing to commit')
 
         self.progress = 98
-        self.message = 'Pushing to repo'
-        file_content = self.third(m, a, b)
-        # print('\n'.join(file_content))
-
         g = git.cmd.Git(self.path)
         print('Pushing to repo ...')
         print(g.push())
