@@ -46,7 +46,7 @@ def run_task():
         t = exporting_threads[key]
         if t.isAlive():
             tid = key
-            return tid
+            break
 
 
     if tid == -1:
