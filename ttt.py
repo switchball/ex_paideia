@@ -25,14 +25,36 @@ def index():
     return render_template('index.html')
     #return 'task id: #%s' % thread_id
 
+@app.route('/check_task')
+def check():
+    global exporting_threads
+    ret = ""
+    for key in exporting_threads:
+        t = exporting_threads[key]
+        s = 'alive' if t.isAlive() else 'dead'
+        ret += f'Task #{key} -> {s}\n'
+    return ret
+
 
 @app.route('/run_task', methods=['POST'])
 def run_task():
     global exporting_threads
 
-    thread_id = random.randint(0, 10000)
-    exporting_threads[thread_id] = BookExportingThread()
-    exporting_threads[thread_id].start()
+    tid = -1
+    # get running task
+    for key in exporting_threads:
+        t = exporting_threads[key]
+        if t.isAlive():
+            tid = key
+            return
+
+
+    if tid == -1:
+        thread_id = random.randint(0, 10000)
+        exporting_threads[thread_id] = BookExportingThread()
+        exporting_threads[thread_id].start()
+    else 
+        thread_id = tid
 
     url_for('progress', thread_id=thread_id)
 
