@@ -13,6 +13,9 @@ static/
 templates/
 *.wsgi
 
+# Tornado Framework
+tornado_server.py
+
 # Config
 repo_dir.txt
 
