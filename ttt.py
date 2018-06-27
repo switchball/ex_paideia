@@ -53,7 +53,7 @@ def run_task():
         thread_id = random.randint(0, 10000)
         exporting_threads[thread_id] = BookExportingThread()
         exporting_threads[thread_id].start()
-    else 
+    else:
         thread_id = tid
 
     url_for('progress', thread_id=thread_id)
